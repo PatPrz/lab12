@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  nginx:
+    ports:
+      - "4001:80"
+
+  mysql:
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+      MYSQL_DATABASE: lab11docker
+      MYSQL_USER: lab11
+      MYSQL_PASSWORD_FILE: /run/secrets/mysql_db_password 
+
+  phpmyadmin:
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+    ports:
+      - "6001:80"
